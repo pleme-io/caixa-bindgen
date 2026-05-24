@@ -1,0 +1,28 @@
+lints.workspace = true
+
+[package]
+name = "bindgen-tests"
+version = "0.1.0"
+publish = false
+rust-version.workspace = true
+edition.workspace = true
+
+[dev-dependencies]
+bindgen = { workspace = true, default-features = true, features = ["__cli", "experimental"] }
+owo-colors.workspace = true
+prettyplease = { workspace = true, features = ["verbatim"] }
+proc-macro2.workspace = true
+regex.workspace = true
+shlex.workspace = true
+similar = { workspace = true, features = ["inline"] }
+syn.workspace = true
+tempfile.workspace = true
+
+[features]
+logging = ["bindgen/logging"]
+static = ["bindgen/static"]
+runtime = ["bindgen/runtime"]
+
+__testing_only_extra_assertions = ["bindgen/__testing_only_extra_assertions"]
+__testing_only_libclang_9 = ["bindgen/__testing_only_libclang_9"]
+__testing_only_libclang_16 = ["bindgen/__testing_only_libclang_16"]

@@ -1,0 +1,34 @@
+lints.workspace = true
+
+[package]
+name = "quickchecking"
+description = "Bindgen property tests with quickcheck. Generate random valid C code and pass it to the csmith/predicate.py script"
+version = "0.0.0"
+publish = false
+rust-version.workspace = true
+edition.workspace = true
+
+[lib]
+name = "quickchecking"
+path = "src/lib.rs"
+
+[[bin]]
+name = "quickchecking"
+path = "src/bin.rs"
+
+[dependencies]
+clap.workspace = true
+quickcheck.workspace = true
+tempfile.workspace = true
+
+[features]
+# No features by default.
+default = []
+
+# Enable the generation of code that allows for zero sized arrays as struct
+# fields. Until issues #684 and #1153 are resolved this can result in failing tests.
+zero-sized-arrays = []
+
+# Enable the generation of code that allows for long double types as struct
+# fields. Until issue #550 is resolved this can result in failing tests.
+long-doubles = []

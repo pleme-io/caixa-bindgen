@@ -1,0 +1,98 @@
+[workspace]
+resolver = "2"
+members = [
+    "bindgen",
+    "bindgen-cli",
+    "bindgen-integration",
+    "bindgen-tests",
+    "bindgen-tests/tests/quickchecking",
+    "bindgen-tests/tests/expectations",
+]
+default-members = [
+    "bindgen",
+    "bindgen-cli",
+    "bindgen-tests",
+]
+
+[workspace.package]
+# If you change this, also update README.md
+rust-version = "1.70.0"
+edition = "2021"
+
+# All dependency version management is centralized here
+[workspace.dependencies]
+annotate-snippets = "0.11.4"
+bindgen = { version = "0.72.0", path = "./bindgen", default-features = false }
+bitflags = "2.2.1"
+block = "0.1"
+cc = "1.0"
+cexpr = "0.6"
+clang-sys = "1"
+clap = "4"
+clap_complete = "4"
+env_logger = "0.10.0"
+itertools = { version = ">=0.10,<0.15", default-features = false }
+libloading = "0.8"
+log = "0.4"
+objc = "0.2"
+owo-colors = "4.1.0"
+prettyplease = "0.2.7"
+proc-macro2 = "1.0.80"
+quickcheck = "1.0"
+quote = { version = "1", default-features = false }
+regex = { version = "1.5.3", default-features = false }
+rustc-hash = "2.1.0"
+shlex = "1"
+similar = "2.2.1"
+syn = "2.0"
+tempfile = "3.27.0"
+
+[workspace.lints.rust]
+unused_qualifications = "warn"
+
+[workspace.lints.clippy]
+pedantic = { level = "warn", priority = -1 }
+
+cast_possible_truncation = "allow"
+cast_possible_wrap = "allow"
+cast_precision_loss = "allow"
+cast_sign_loss = "allow"
+default_trait_access = "allow"
+ignored_unit_patterns = "allow"
+implicit_hasher = "allow"
+items_after_statements = "allow"
+match_same_arms = "allow"
+maybe_infinite_iter = "allow"
+missing_errors_doc = "allow"
+missing_panics_doc = "allow"
+module_name_repetitions = "allow"
+must_use_candidate = "allow"
+redundant_closure_for_method_calls = "allow"
+return_self_not_must_use = "allow"
+similar_names = "allow"
+struct_excessive_bools = "allow"
+struct_field_names = "allow"
+unnecessary_wraps = "allow"
+unreadable_literal = "allow"
+used_underscore_binding = "allow"
+wildcard_imports = "allow"
+
+# TODO
+trivially_copy_pass_by_ref = "allow"
+unused_self = "allow"
+
+# These seem to be ok to ignore for now
+enum_glob_use = "allow"
+too_many_lines = "allow"
+
+# Config for 'cargo release'
+[workspace.metadata.release]
+shared-version = true # ensures published packages share the same version
+tag-name = "v{{version}}"
+# Don't release any crate unless its manifest has `release = true`
+release = false
+
+# The profile that 'cargo dist' will build with
+[profile.dist]
+inherits = "release"
+lto = "thin"
