@@ -23,3 +23,4 @@ csmith-fuzzing/platform.info
 node_modules
 package-lock.json
 package.json
+Cargo.build-spec.json
